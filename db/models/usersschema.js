@@ -7,7 +7,8 @@ const users = new mongoose.Schema({
     lastName:{type:String},
     age:{type:Number},
     email:{type:String , uniqe:true }, 
-    password:{type:String }
+    password:{type:String },
+    country :{type:String }
 
 })
 

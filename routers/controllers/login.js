@@ -1,25 +1,39 @@
 
 const User = require("../../db/models/usersschema");
 const usersModel = require("../../db/models/usersschema");
-const login  =(req,res)=> {
-    usedemail=req.body.email
-    usedpassword=req.body.password
-  
-    usersModel.findOne({email:usedemail ,password:usedpassword})
-    .then((result) => {
-      console.log (result)
-      if (result)
-      {res.status(200).json({success:true , massage:"Valid login credentials" });}
-      else 
-      {
-        res.status(401).json({success: false, massage:"Invalid login credentials"  });
-    
-      }
-    })
-    .catch((err) => {
-        res.status(500).json({success: false, massage:"Invalid login credentials"  });
-    });
-  
-  }
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 
+const login = (req, res) => {
+  const { email, password } = req.body;
+
+  usersModel.findOne({email}).then((result) => {
+    if (!result) {
+      res.status(404).json("email not found");
+    }
+    try {
+      const vaild = bcrypt.compare(password, result.password);
+      if (!vaild) {
+        res.status(404).json("password error");
+      } else {
+        const payload = {
+          id: result._id,
+          name: result.name,
+          country : result.country 
+        };
+
+        const SECRET = process.env.SECRET;
+        const options = {
+          expiresIn: "60m",
+        };
+
+        const token = jwt.sign(payload, SECRET, options);
+
+        res.status(200).json({message:" you logged in", token:token});
+      }
+    } catch (error) {
+      res.json(error);
+    }
+  });
+};
   module.exports = login 
