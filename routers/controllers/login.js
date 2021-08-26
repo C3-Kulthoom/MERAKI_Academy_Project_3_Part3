@@ -26,7 +26,8 @@ const login = (req, res) => {
         const payload = {
           id: result._id,
           name: result.name,
-          country : result.country 
+          country : result.country ,
+          role: { role: result.rolr.role, permissions: result.role.permissions }
         };
 
         const SECRET = process.env.SECRET;

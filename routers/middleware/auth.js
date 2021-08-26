@@ -11,7 +11,8 @@ const auth = (req, res, next) => {
     if (err) {
       res.status (403).json( { success: false , massage : "forbeddin"});
     } else {
-      console.log(result);
+        req.token =result ; 
+     
       next();
     }
   });
