@@ -8,7 +8,8 @@ const createNewAuthor =(req, res)=>{
     age,
     email,
     password, 
-    country
+    country,
+    role
  } = req.body;
       
     const User = new usersModel({
@@ -17,7 +18,8 @@ const createNewAuthor =(req, res)=>{
     age,
     email,
     password,
-    country
+    country,
+    role
     });
   
     User

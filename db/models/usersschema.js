@@ -8,7 +8,8 @@ const users = new mongoose.Schema({
     age:{type:Number},
     email:{type:String , uniqe:true }, 
     password:{type:String },
-    country :{type:String }
+    country :{type:String },
+    role:{type: mongoose.Schema.Types.Mixed}
 
 })
 
