@@ -10,5 +10,5 @@ const roles = new mongoose.Schema ({
 
 
 
-const rolesModel =mongoose.model("Role" ,role ) 
+const rolesModel =mongoose.model("Role" ,roles ) 
 module.exports = rolesModel 
