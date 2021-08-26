@@ -1,4 +1,5 @@
 const express = require("express");
+const { auth } = require("../middleware/auth");
 
 const 
 createNewComment 
@@ -6,5 +7,5 @@ createNewComment
 
   const commentsRouter = express.Router();
 
-  commentsRouter.post("/articles/:id/comments", createNewComment);
+  commentsRouter.post("/articles/:id/comments",auth , createNewComment);
   module.exports = commentsRouter;
