@@ -26,4 +26,4 @@ newComment.save().then((result) => {
 
 }
 
-  module.exports = createNewComment 
+  module.exports ={ createNewComment} 

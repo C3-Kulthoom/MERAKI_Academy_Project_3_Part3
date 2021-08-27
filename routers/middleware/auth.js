@@ -8,6 +8,7 @@ const auth = (req, res, next) => {
   const token = req.headers.authorization.split(" ").pop();
 
   jwt.verify(token, process.env.SECRET, (err, result) => {
+    console.log(result)
     if (err) {
       res.status (403).json( { success: false , massage : "forbeddin"});
     } else {
@@ -18,4 +19,4 @@ const auth = (req, res, next) => {
   });
 };
 
-module.exports={ auth };
+module.exports= {auth} ;

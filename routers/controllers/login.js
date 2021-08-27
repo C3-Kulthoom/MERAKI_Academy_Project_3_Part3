@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const login = (req, res) => {
   const { email, password } = req.body;
 
-  usersModel.findOne({email}).then((result) => {
+  usersModel.findOne({email}).populate ("role").then((result) => {
     console.log("fvhnjkdfnvkndfkvl ", result )
 
     if (!result) {
@@ -27,7 +27,7 @@ const login = (req, res) => {
           id: result._id,
           name: result.name,
           country : result.country ,
-          role: { role: result.rolr.role, permissions: result.role.permissions }
+          role: { role: result.role.role , permissions: result.role.permissions }
         };
 
         const SECRET = process.env.SECRET;
